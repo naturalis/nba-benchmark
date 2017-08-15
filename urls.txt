@@ -1,0 +1,4 @@
+http://145.136.240.125:30076/v2/specimen/query
+http://145.136.240.125:30076/v2/specimen/groupByScientificName/?_size=10
+http://145.136.240.125:30076/v2/specimen/groupByScientificName/?_size=100
+http://145.136.240.125:30076/v2/specimen/dwca/getDataSet/cnidaria
