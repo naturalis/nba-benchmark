@@ -1,12 +1,21 @@
 
 ## read in URLs
 urls <- scan('urls.txt', what='character')
+## 'Commented out' urls begin with a '#', filter them out! 
+urls <- urls[!grepl("^#", urls)]
 
-concurrent.requests <- c(1, 10, 100)
+concurrent.requests <- c(1, 5, 10)##, 20, 30, 40, 50, 60, 70, 80)
 
 ## initialise plotting device
-jpeg("benchmark-nba.jpg", width=30, height=20, units='cm', res=300)
-par(mfrow=c(3, 1))
+pdf("benchmark.pdf")
+
+## title page with date
+server <- sub("(^.*v2/).*", "\\1", urls[1])
+plot(c(0, 1), c(0, 1), ann = F, bty = 'n', type = 'n', xaxt = 'n', yaxt = 'n')
+text(x = 0.5, y = 0.7, paste("NBA benchmark test\n"), cex = 3, col = "black")
+text(x = 0.5, y = 0.5, paste("Server: ", server), cex = 1.8, col = "black")
+text(x = 0.5, y = 0.3, paste(format(Sys.time(), "%a %b %d %Y\n%H:%M:%S")), cex = 1.8, col = "black")
+
 
 for (url in urls) {
 
@@ -38,11 +47,11 @@ for (url in urls) {
 
     ## plot results
     title <- sub("^.*v2/", "", url)
-    plot(log10(concurrent.requests), avg.times$ttime, col='red', ylim=c(0, max(avg.times$ttime)),
-         lwd=2, type='b', main=title, xlab="log10(concurrent requests)", ylab="average response time (s)")
-    lines(log10(concurrent.requests), avg.times$ctime, col='blue', type='b')
-    lines(log10(concurrent.requests), avg.times$dtime, col='orange', type='b')
-    lines(log10(concurrent.requests), avg.times$wait, col='green', type='b')
+    plot(concurrent.requests, avg.times$ttime, col='red', ylim=c(0, max(avg.times$ttime)),
+         lwd=2, type='b', main=title, xlab="concurrent requests", ylab="average response time (s)")
+    lines(concurrent.requests, avg.times$ctime, col='blue', type='b')
+    lines(concurrent.requests, avg.times$dtime, col='orange', type='b')
+    lines(concurrent.requests, avg.times$wait, col='green', type='b')
     legend('bottomright', c('total', 'conncection', 'processing', 'wait'), fill=c('red', 'blue', 'orange', 'green'), bty='n')        
 }
 dev.off()
