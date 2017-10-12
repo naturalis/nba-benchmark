@@ -1,0 +1,11 @@
+category	path	doctypes	avg	max	concurrent
+Query	query	specimen,multimedia,taxon,geo	2	4	1
+Query-special	groupByScientificName	specimen,taxon	4	8	1
+Medadata	metadata/getPaths	specimen,multimedia,taxon,geo	1	2	1
+Download-static	dwca/getDataSet/mammalia	specimen,taxon	300	600	1
+Download-dynamic	dwca/query/?_size=10000	specimen,taxon	300	600	1
+Query	query	specimen,multimedia,taxon,geo	3	6	20
+Query-special	groupByScientificName	specimen,taxon	5	10	20
+Medadata	metadata/getPaths	specimen,multimedia,taxon,geo	2	4	20
+Download-static	dwca/getDataSet/mammalia	specimen,taxon	400	800	20
+Download-dynamic	dwca/query/?_size=10000	specimen,taxon	400	800	20
