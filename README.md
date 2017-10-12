@@ -6,4 +6,4 @@ Benchmark NBA using Apache bench and visualise results.
  * Installation of R
  
 ## Running
-URLs to be benchmarked are listed in `urls.txt`. Start benchmark by executing the script `benchmark.R` from within an R shell. Per default, concurrent requests of batch sizes 1, 10, and 100 are done one after another. Results are plotted into a file named `benchmark-nba.jpg`. If more URLs are added to `urls.txt`, the script might have to be adjusted concerning plot window size etc.
+Table with specifications on what to benchmark and norm values are in file *testnorms.txt*. Start benchmark by executing the script `run.R` from within an R shell. Results are plotted into a pdf document. 
